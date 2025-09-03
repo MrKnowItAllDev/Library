@@ -1,0 +1,106 @@
+@font-face {
+
+}
+
+@font-face {
+
+}
+
+:root {
+    --background: #0D0D0D;
+    --nav-bg: #000000;
+    --primary-text: #FFFFFF;
+    --secondary-text: #B3B3B3;
+    --hover-state: #E50914;
+    --button-bg: #E50914;
+    --button-hover: #F6121D;
+    --btn-active: #B20710;
+    --btn-secondary: #2A2A2A;
+    --btn-secondary-hover: #3A3A3A;
+    --btn-text-hover: #FFFFFF;
+    --btn-text: #B3B3B3;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", "Roboto", "Helvetica Neue", sans-serif;
+    color: var(--primary-text);
+}
+
+#screen {
+    width: 100vw;
+    min-height: 100vh;
+    background-color: var(--background);
+}
+
+#header {
+    display: flex;
+    background-color: var(--nav-bg);
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 24px;
+    height: 100px;
+    border-bottom: 1px solid #201f1f;
+    position: sticky;
+    top: 0;
+}
+
+#main {
+    padding: 42px;
+}
+
+#main > .heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.heading > button {
+    border: none;
+    background-color: var(--button-bg);
+    padding: 10px 90px;
+    border-radius: 4px;
+    color: #FFFFFF;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+#main > .heading > h1 {
+    font-size: 3.5rem;
+}
+
+#header > .nav {
+    min-width: 500px;
+}
+
+#header > .nav > ul {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#header > .nav > ul > li {
+    list-style-type: none;
+}
+
+#header > .nav > ul > li > a {
+    text-decoration: none;
+}
+
+li > a:hover {
+    color: var(--hover-state);
+}
+
+.content {
+    display: grid;
+    padding: 50px 24px;
+    grid-template-columns: repeat(4, 400px);
+    grid-auto-rows: 450px;
+    gap: 40px;
+}
+
+.card {
+    border-radius: 12px 12px 0 0;
+    padding: 24px;
+}

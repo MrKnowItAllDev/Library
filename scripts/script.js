@@ -1,23 +1,34 @@
 'use strict';
 
-const library = [];
+class Library {
+    static library = [];
+    constructor() { }
 
-function Book(title, author, desc, pages, cover, status) {
-    this.id = crypto.randomUUID();
-    this.title = title;
-    this.author = author;
-    this.description = desc;
-    this.pages = pages;
-    this.cover = cover;
-    this.status = status;
+    static addToLibrary(book) {
+        this.library.push(book);
+    }
+    static removeFromLibrary(book) {
+        this.library.splice(this.library.indexOf(book), 1);
+    }
 }
 
-// Use to update
-Book.prototype.toggleStatus = function() {
-    this.status = !this.status;
+class Book {
+    constructor(title, author, year, pages, description, status) {
+        this.id = crypto.randomUUID();
+        this.title = title;
+        this.author = author;
+        this.year = year;
+        this.pages = pages;
+        this.description = description;
+        this.status = status;
+    }
+
+    setStatus() {
+        this.status = !this.status;
+    }
 }
 
-function addToLibrary(library) {
+function addToLibrary() {
     const submitBtn = document.querySelector('#add');
     const form = document.querySelector('form');
     let formData = new FormData(form, submitBtn);
@@ -30,9 +41,8 @@ function addToLibrary(library) {
     }
 
     const status = document.querySelector('#status');
-    book['status'] = status.checked;
-
-    library.push(book);
+    book.status = status.checked;
+    Library.addToLibrary(book);
 }
 
 function displayLibrary(library) {
@@ -72,12 +82,12 @@ function displayLibrary(library) {
         }
 
         remove.addEventListener('click', (e) => {
-            library.splice(library.indexOf(book));
+            Library.removeFromLibrary(book);
             clear(parent, book);
         });
 
         status.addEventListener('click', (e) => {
-            book.toggleStatus();
+            book.setStatus();
             if (book.status) {
                 if (status.classList.contains('unchecked')) status.classList.remove('unchecked');
                 status.classList.add('checked');
@@ -130,8 +140,9 @@ closeBtn.addEventListener('click', (e) => {
 
 btn.addEventListener('click', (e) => {
     e.preventDefault();
-    addToLibrary(library);
-    displayLibrary(library);
+    addToLibrary();
+    displayLibrary(Library.library);
+    console.log(Library.library);
 });
 
 btn.addEventListener('click', () => {
